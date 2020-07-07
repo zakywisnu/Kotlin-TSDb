@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="matchNext"
+            type="com.zeroemotion.footballleague.model.Match" />
+
+        <variable
+            name="teamsHome"
+            type="com.zeroemotion.footballleague.model.Teams" />
+
+        <variable
+            name="teamsAway"
+            type="com.zeroemotion.footballleague.model.Teams" />
+
+        <variable
+            name="listener"
+            type="com.zeroemotion.footballleague.util.CustomOnClick" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{listener::onViewClicked}">
+
+            <TextView
+                android:id="@+id/idEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{matchNext.idEvent}"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/matchTime"
+                style="@style/TextViewBasic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{matchNext.strTime}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/matchDate"
+                style="@style/TextViewBasic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{matchNext.strDate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/matchTime" />
+
+            <TextView
+                android:id="@+id/idHomeTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{matchNext.idHomeTeam}"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/matchHomeBadge"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:imageUrl="@{teamsHome.strTeamBadge}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/matchDate" />
+
+            <!--            <TextView-->
+            <!--                android:text="@string/_0"-->
+            <!--                android:textSize="30sp"-->
+            <!--                android:gravity="center"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:layout_marginStart="8dp"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/matchHomeBadge"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/matchDate"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                android:id="@+id/matchHomeScore"-->
+            <!--                android:layout_width="50dp"-->
+            <!--                android:layout_height="50dp"/>-->
+
+            <TextView
+                android:id="@+id/matchHomeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@{matchNext.strHomeTeam}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/matchHomeBadge"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/matchHomeBadge" />
+
+            <TextView
+                android:id="@+id/tvVs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titik_dua"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/matchDate" />
+
+            <TextView
+                android:id="@+id/idAwayTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{matchNext.idAwayTeam}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/matchAwayBadge"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:imageUrl="@{teamsAway.strTeamBadge}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/matchDate" />
+
+            <!--            <TextView-->
+            <!--                android:text="@string/_0"-->
+            <!--                android:textSize="30sp"-->
+            <!--                android:gravity="center"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:layout_marginStart="8dp"-->
+            <!--                app:layout_constraintEnd_toStartOf="@id/matchAwayBadge"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/matchDate"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                android:id="@+id/matchAwayScore"-->
+            <!--                android:layout_width="50dp"-->
+            <!--                android:layout_height="50dp"/>-->
+
+            <TextView
+                android:id="@+id/matchAwayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@{matchNext.strAwayTeam}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/matchAwayBadge"
+                app:layout_constraintStart_toStartOf="@id/matchAwayBadge"
+                app:layout_constraintTop_toBottomOf="@id/matchAwayBadge" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

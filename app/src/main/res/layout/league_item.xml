@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="league"
+            type="com.zeroemotion.footballleague.model.League" />
+        <variable
+            name="listener"
+            type="com.zeroemotion.footballleague.util.CustomOnClick" />
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_margin="4dp"
+        android:onClick="@{listener::onViewClicked}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/idLeague"
+            android:text="@{league.id}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/imageLeagueItem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/english_premier_league"
+            android:imageUrl="@{league.strBadge}"
+            android:layout_width="100dp"
+            android:layout_weight="2"
+            android:layout_height="100dp"/>
+        <TextView
+            android:id="@+id/tvLeagueItem"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@{league.strLeague}"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</layout>
