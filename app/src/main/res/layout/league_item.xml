@@ -22,7 +22,7 @@
         <TextView
             android:visibility="gone"
             android:id="@+id/idLeague"
-            android:text="@{league.id}"
+            android:text="@{league.idLeague}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

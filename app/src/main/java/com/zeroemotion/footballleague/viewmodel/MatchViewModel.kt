@@ -71,46 +71,6 @@ class MatchViewModel(application: Application): BaseViewModel(application){
         )
     }
 
-    fun fetchHomeBadge(idTeam: Int?){
-        disposable.add(
-            footballService.getDetailHome(idTeam)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<TeamsResponseHome>(){
-                    override fun onComplete() {
-                    }
-
-                    override fun onNext(team: TeamsResponseHome) {
-                        teamHomeBadge.value = team.teams
-                    }
-
-                    override fun onError(e: Throwable) {
-                    }
-
-                })
-        )
-    }
-
-    fun fetchAwayBadge(idTeam: Int?){
-        disposable.add(
-            footballService.getDetailAway(idTeam)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<TeamsResponseAway>(){
-                    override fun onComplete() {
-                    }
-
-                    override fun onNext(team: TeamsResponseAway) {
-                        teamAwayBadge.value = team.teams
-                    }
-
-                    override fun onError(e: Throwable) {
-                    }
-
-                })
-        )
-    }
-
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

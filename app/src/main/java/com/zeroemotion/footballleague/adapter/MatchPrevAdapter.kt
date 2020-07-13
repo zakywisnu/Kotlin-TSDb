@@ -14,9 +14,12 @@ class MatchPrevAdapter(val listPrev: ArrayList<Match>) :
     RecyclerView.Adapter<MatchPrevAdapter.MatchPrevViewHolder>(), CustomOnClick {
 
     fun updatePrevMatch(newPrevList: List<Match>){
-        listPrev.clear()
         listPrev.addAll(newPrevList)
         notifyDataSetChanged()
+    }
+
+    fun clearPrevMatch(){
+        listPrev.clear()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchPrevViewHolder {

@@ -24,7 +24,6 @@ class LeagueAdapter (val leagueList: ArrayList<League>): RecyclerView.Adapter<Le
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<LeagueItemBinding>(inflater, R.layout.league_item,parent,false)

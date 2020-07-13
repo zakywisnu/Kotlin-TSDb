@@ -37,6 +37,7 @@
                 android:id="@+id/leagueError"
                 style="@style/TextViewTitle"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:text="@string/error_retrieve_data"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -13,8 +13,12 @@ import com.zeroemotion.footballleague.util.CustomOnClick
 class MatchNextAdapter(val matchList: ArrayList<Match>): RecyclerView.Adapter<MatchNextAdapter.MatchNextViewHolder>(), CustomOnClick{
 
     fun updateNextMatch(newMatch: List<Match>){
-        matchList.clear()
         matchList.addAll(newMatch)
+        notifyDataSetChanged()
+    }
+
+    fun clearNextMatch(){
+        matchList.clear()
         notifyDataSetChanged()
     }
 

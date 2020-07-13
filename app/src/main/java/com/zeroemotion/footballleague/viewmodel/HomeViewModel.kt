@@ -7,65 +7,49 @@ import com.zeroemotion.footballleague.model.League
 import com.zeroemotion.footballleague.model.LeagueResponse
 import com.zeroemotion.footballleague.service.FootballService
 import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import java.util.function.Function
 
-class HomeViewModel(application: Application): BaseViewModel(application){
+
+class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     val listLoading = MutableLiveData<Boolean>()
-    val listLeague = MutableLiveData<ArrayList<League>>()
+    val listLeague = MutableLiveData<List<League>>()
     val listError = MutableLiveData<Boolean>()
-    val imageLeague = MutableLiveData<ArrayList<League>>()
     private val disposable = CompositeDisposable()
     private val footballService = FootballService()
 
-    fun fetchLeague(){
+    fun fetchLeague() {
         listLoading.value = true
         disposable.add(
             footballService.getAllLeague()
-                .subscribeOn(Schedulers.newThread())
+                .flatMap { list: LeagueResponse ->
+                    Observable.fromIterable(list.leagues)
+                }
+                .filter { league: League -> league.strSport == "Soccer" }
+                .flatMap { league: League ->
+                    footballService.getDetailLeague(league.idLeague)
+                }
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<LeagueResponse>(){
-                    override fun onComplete() {
-                        listLoading.value = false
-                    }
-
-                    override fun onNext(league: LeagueResponse) {
-                        listLoading.value = false
-                        listLeague.value = league.leagues
-
-                    }
-
-                    override fun onError(e: Throwable) {
-                        listLoading.value = false
-                        listError.value = true
-                        e.printStackTrace()
-                    }
+                .subscribe({
+                    listLeague.value = it.leagues
+                    listLoading.value = false
+                    listError.value = false
+                }, {
+                    listLoading.value = false
+                    listError.value = true
+                    disposable.clear()
                 })
         )
     }
 
-    fun fetchLeagueBadge(id: String?){
-        disposable.add(
-            footballService.getDetailLeague(id)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<LeagueResponse>(){
-                    override fun onComplete() {
-                    }
-
-                    override fun onNext(league: LeagueResponse) {
-                        imageLeague.value = league.leagues
-                    }
-
-                    override fun onError(e: Throwable) {
-                    }
-
-                })
-        )
-    }
 
     override fun onCleared() {
         super.onCleared()
