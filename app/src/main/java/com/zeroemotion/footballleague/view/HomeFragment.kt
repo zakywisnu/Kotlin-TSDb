@@ -28,7 +28,6 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private var leagueAdapter = LeagueAdapter(arrayListOf())
     private lateinit var dataBinding: FragmentHomeBinding
-    private val disposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +52,6 @@ class HomeFragment : Fragment() {
         leagueRefresh.setOnRefreshListener {
             rvLeague.visibility = View.GONE
             leagueLoading.visibility = View.GONE
-            disposable.dispose()
-            leagueAdapter.clearLeagueList()
             viewModel.fetchLeague()
             leagueRefresh.isRefreshing = false
             Toast.makeText(context,"Refreshing", Toast.LENGTH_SHORT).show()
