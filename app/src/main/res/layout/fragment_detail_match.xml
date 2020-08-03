@@ -7,56 +7,28 @@
 
         <variable
             name="match"
-            type="com.zeroemotion.footballleague.model.Match" />
+            type="com.zeroemotion.footballleague.data.model.Match" />
 
         <variable
             name="teamsHome"
-            type="com.zeroemotion.footballleague.model.Teams" />
+            type="com.zeroemotion.footballleague.data.model.Teams" />
 
         <variable
             name="teamsAway"
-            type="com.zeroemotion.footballleague.model.Teams" />
+            type="com.zeroemotion.footballleague.data.model.Teams" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".view.DetailMatchFragment">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/matchAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorTextGrey"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-                app:titleEnabled="false">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.3"
-                    android:background="@android:color/black"
-                    android:fitsSystemWindows="true" />
+        tools:context=".ui.detailmatch.DetailMatchFragment">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    app:cardCornerRadius="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_margin="10dp"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -175,20 +147,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tab_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="top"
-                    android:layout_marginBottom="48dp"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    tools:title="@string/title_match" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -245,7 +203,7 @@
                     android:id="@+id/tvDateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_22_07_98"
+                    android:text="@{match.strDate}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvStatistik" />
@@ -263,6 +221,7 @@
                     android:id="@+id/imageHomeDetail"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
+                    android:imageUrl="@{teamsHome.strTeamBadge}"
                     android:layout_margin="8dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toStartOf="parent"
@@ -274,6 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:text="@{match.strHomeTeam}"
                     android:maxLines="1"
                     app:layout_constraintEnd_toEndOf="@id/imageHomeDetail"
                     app:layout_constraintStart_toStartOf="parent"
@@ -285,6 +245,7 @@
                     android:layout_height="75dp"
                     android:layout_margin="8dp"
                     android:scaleType="fitCenter"
+                    android:imageUrl="@{teamsAway.strTeamBadge}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view2" />
 
@@ -295,6 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:maxLines="1"
+                    android:text="@{match.strAwayTeam}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/imageAwayDetail"
                     app:layout_constraintTop_toBottomOf="@id/imageAwayDetail" />
@@ -312,9 +274,11 @@
                 <TextView
                     android:id="@+id/tvHomeGoals"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:text="@{match.intHomeScore}"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
                     app:layout_constraintStart_toStartOf="@id/guideline1"
                     app:layout_constraintTop_toBottomOf="@id/view3" />
@@ -333,10 +297,12 @@
 
                 <TextView
                     android:id="@+id/tvAwayGoals"
+                    android:text="@{match.intAwayScore}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:gravity="center"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
                     app:layout_constraintStart_toStartOf="@id/guideline3"
                     app:layout_constraintTop_toBottomOf="@id/view3" />
@@ -353,7 +319,8 @@
                 <TextView
                     android:id="@+id/tvHomeShots"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:text="@{match.intHomeShots}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -373,8 +340,9 @@
 
                 <TextView
                     android:id="@+id/tvAwayShots"
+                    android:text="@{match.intAwayShots}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -392,8 +360,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeRedCards"
+                    android:text="@{match.strHomeRedCards}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -414,7 +383,8 @@
                 <TextView
                     android:id="@+id/tvAwayRedCards"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:text="@{match.strAwayRedCards}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -432,8 +402,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeYellowCards"
+                    android:text="@{match.strHomeYellowCards}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -453,8 +424,9 @@
 
                 <TextView
                     android:id="@+id/tvAwayYellowCards"
+                    android:text="@{match.strAwayYellowCards}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -473,8 +445,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeGoalKeepers"
+                    android:text="@{match.strHomeLineupGoalkeeper}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -489,13 +462,16 @@
                     android:text="@string/lineup_goalkeeper"
                     app:layout_constraintBottom_toTopOf="@id/view8"
                     app:layout_constraintEnd_toStartOf="@id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/guideline2"
-                    app:layout_constraintTop_toBottomOf="@id/view7" />
+                    app:layout_constraintTop_toBottomOf="@id/view7"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/tvAwayGoalKeepers"
+                    android:text="@{match.strAwayLineupGoalkeeper}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -513,8 +489,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeDefenders"
+                    android:text="@{match.strHomeLineupDefense}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -535,7 +512,8 @@
                 <TextView
                     android:id="@+id/tvAwayDefenders"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:text="@{match.strAwayLineupDefense}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -553,8 +531,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeMidfields"
+                    android:text="@{match.strHomeLineupMidfield}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -574,8 +553,9 @@
 
                 <TextView
                     android:id="@+id/tvAwayMidfields"
+                    android:text="@{match.strAwayLineupMidfield}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -592,8 +572,9 @@
                     app:layout_constraintTop_toBottomOf="@id/tvHomeMidfields" />
                 <TextView
                     android:id="@+id/tvHomeForwards"
+                    android:text="@{match.strHomeLineupForward}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -613,8 +594,9 @@
 
                 <TextView
                     android:id="@+id/tvAwayForwards"
+                    android:text="@{match.strAwayLineupForward}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -632,8 +614,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeSubstitutes"
+                    android:text="@{match.strHomeLineupSubstitutes}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -653,8 +636,9 @@
 
                 <TextView
                     android:id="@+id/tvAwaySubstitutes"
+                    android:text="@{match.strAwayLineupSubstitutes}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
@@ -672,8 +656,9 @@
 
                 <TextView
                     android:id="@+id/tvHomeGoalDetail"
+                    android:text="@{match.strHomeGoalDetails}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -693,11 +678,13 @@
 
                 <TextView
                     android:id="@+id/tvAwayGoalDetail"
+                    android:text="@{match.strAwayGoalDetails}"
                     style="@style/TextViewBasicDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:layout_constraintEnd_toStartOf="@id/guideline4"
+                    app:layout_constraintBottom_toTopOf="@id/view13"
                     app:layout_constraintStart_toStartOf="@id/guideline3"
                     app:layout_constraintTop_toBottomOf="@id/view12" />
 
@@ -708,13 +695,13 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvHomeGoalDetail" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </layout>

@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="matchNext"
+            name="match"
             type="com.zeroemotion.footballleague.data.model.Match" />
 
         <variable
@@ -22,14 +22,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:tag="@{matchNext.idEvent}"
+            android:tag="@{match.idEvent}"
             android:onClick="@{listener::onViewClicked}">
 
             <TextView
                 android:id="@+id/idEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{matchNext.idEvent}"
+                android:text="@{match.idEvent}"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
                 android:id="@+id/idHomeTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{matchNext.idHomeTeam}"
+                android:text="@{match.idHomeTeam}"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
                 android:layout_marginStart="8dp"
                 android:maxLength="10"
                 android:gravity="center"
-                android:text="@{matchNext.intHomeScore}"
+                android:text="@{match.intHomeScore}"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,7 @@
                 android:layout_margin="8dp"
                 android:gravity="center"
                 android:singleLine="false"
-                android:text="@{matchNext.strHomeTeam}"
+                android:text="@{match.strHomeTeam}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:text="@{matchNext.idAwayTeam}"
+                android:text="@{match.idAwayTeam}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,7 +120,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
-                android:text="@{matchNext.intAwayScore}"
+                android:text="@{match.intAwayScore}"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +135,7 @@
                 android:gravity="center"
                 android:maxLength="10"
                 android:singleLine="false"
-                android:text="@{matchNext.strAwayTeam}"
+                android:text="@{match.strAwayTeam}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

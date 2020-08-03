@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.zeroemotion.footballleague.view.HomeFragment"
-        android:label="fragment_home"
+        android:name="com.zeroemotion.footballleague.ui.league.HomeFragment"
+        android:label="League"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/actionDetailLeague"
@@ -16,13 +16,13 @@
     </fragment>
     <fragment
         android:id="@+id/detailLeagueFragment"
-        android:name="com.zeroemotion.footballleague.view.DetailLeagueFragment"
-        android:label="fragment_detail_league"
+        android:name="com.zeroemotion.footballleague.ui.detailleague.DetailLeagueFragment"
+        android:label="League Detail"
         tools:layout="@layout/fragment_detail_league" >
         <argument
             android:name="leagueId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/actionDetailMatch"
             app:destination="@id/detailMatchFragment"
@@ -31,12 +31,11 @@
     </fragment>
     <fragment
         android:id="@+id/detailMatchFragment"
-        android:name="com.zeroemotion.footballleague.view.DetailMatchFragment"
-        android:label="fragment_detail_match"
+        android:name="com.zeroemotion.footballleague.ui.detailmatch.DetailMatchFragment"
+        android:label="Match Detail"
         tools:layout="@layout/fragment_detail_match" >
         <argument
             android:name="idMatch"
-            app:argType="integer"
-            android:defaultValue="0" />
+            app:argType="com.zeroemotion.footballleague.data.model.Match" />
     </fragment>
 </navigation>

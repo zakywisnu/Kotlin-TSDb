@@ -6,7 +6,7 @@
     <data>
         <variable
             name="league"
-            type="com.zeroemotion.footballleague.model.League" />
+            type="com.zeroemotion.footballleague.data.model.League" />
         <variable
             name="listener"
             type="com.zeroemotion.footballleague.util.CustomOnClick" />

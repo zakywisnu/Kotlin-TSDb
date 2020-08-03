@@ -37,6 +37,8 @@
     <string name="lineup_substitutes">lineup Substitutes</string>
     <string name="full_time">Full Time</string>
     <string name="error_retrieve_data">Error Retrieve Data</string>
+    <string name="str_progress">Load Data Leagues</string>
+    <string name="search">Search</string>
 
     <string-array name="league_id">
         <item>4328</item>
